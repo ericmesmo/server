@@ -8,9 +8,7 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(express.json());
-app.use(cors({
-    origin: "http://localhost:3333"
-}))
+app.use(cors());
 
 // Requeste para a rota chamada no front-end
 app.get('/games', async (request, response) => {
@@ -30,6 +28,7 @@ app.get('/games', async (request, response) => {
 app.post('/games/:id/ads', async (request, response) => {
     const gameId = request.params.id;
     const body = request.body; 
+
 
     const ad = await prisma.ad.create({
         data: {
